@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: vernemq-dep
+  name: vernemq-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vernemq-dep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: vernemq-dep
+    spec:
+      containers:
+      - image: asia-docker.pkg.dev/gcp-iot-core-361019/iot-core-dev/vernemq:812845df083c84695bf98f0ebf4dfdeba8072150
+        name: vernemq
+        ports:
+        - containerPort: 8888
+          name: ui
+        - containerPort: 1883
+          name: mqtt
+        - containerPort: 8883
+          name: ssl
+        - containerPort: 4369
+          name: empd
+        - containerPort: 44053
+          name: msg
+        - containerPort: 9100
+          name: erlan1
+        - containerPort: 9101
+          name: erlan2
+        env:
+          - name: DOCKER_VERNEMQ_ACCEPT_EULA
+            value: "yes"
+          - name: DOCKER_VERNEMQ_ALLOW_ANONYMOUS
+            value: "on"
