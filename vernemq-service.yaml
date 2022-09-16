@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: vernemq-dep
+  name: vernemq-dep
+  namespace: default
+spec:
+  ports:
+  - port: 1883
+    protocol: TCP
+    targetPort: 1883
+    name: mqtt
+  - port: 8883
+    protocol: TCP
+    targetPort: 8883
+    name: mqttssl
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+    name: websockets
+  - port: 4369
+    protocol: TCP
+    targetPort: 4369
+    name: empd
+  - port: 8888
+    protocol: TCP
+    targetPort: 8888
+    name: prometheus
+  selector:
+    app: vernemq-dep
+  sessionAffinity: None
+  type: LoadBalancer
