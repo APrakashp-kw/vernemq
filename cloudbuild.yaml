@@ -41,13 +41,13 @@ steps:
     'asia-docker.pkg.dev/$PROJECT_ID/iot-core-dev/vernemq:$REVISION_ID'
   ]
 # Step 3
-- id: 'Deploy to K8s'
-  name: 'gcr.io/cloud-builders/kubectl'
-  #args: ['apply', '-f', 'k8s/']
-  args: ['apply', '-f', '*.yaml']
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
+# - id: 'Deploy to K8s'
+#   name: 'gcr.io/cloud-builders/kubectl'
+#   #args: ['apply', '-f', 'k8s/']
+#   args: ['apply', '-f', '*.yaml']
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
   
 
 #  env:
@@ -55,18 +55,18 @@ steps:
   #- 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
   ###########
 # Step 4
-- id: 'K8s deployment Image Replace'
-  name: 'gcr.io/cloud-builders/kubectl'
-  args: [
-    'set', 
-    'image', 
-    'deployment', 
-    'vernemq-dep', 
-    'vernemq=asia-docker.pkg.dev/$PROJECT_ID/iot-core-dev/vernemq:$REVISION_ID'
-  ]
-  env:
-  - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
+# - id: 'K8s deployment Image Replace'
+#   name: 'gcr.io/cloud-builders/kubectl'
+#   args: [
+#     'set', 
+#     'image', 
+#     'deployment', 
+#     'vernemq-dep', 
+#     'vernemq=asia-docker.pkg.dev/$PROJECT_ID/iot-core-dev/vernemq:$REVISION_ID'
+#   ]
+#   env:
+#   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
+#   - 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
   ###########
 # Push the image to Google Container Registry with the latest tag
 images: [
