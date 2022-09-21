@@ -49,17 +49,17 @@ spec:
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK1.HOOK
             value: "on_subscribe"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK1.ENDPOINT 
-            value: "http://host.docker.internal:8094/subscribeHook"
+            value: "http://state-manage.default.svc.cluster.local:8094/subscribeHook"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK2.HOOK
             value: "auth_on_register"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK2.ENDPOINT 
-            value: "http://host.docker.internal:8090/device/authenticate"
+            value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/authenticate"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK3.HOOK
             value: "auth_on_publish"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK3.ENDPOINT 
-            value: "http://host.docker.internal:8090/device/pubAuthorize"
+            value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/pubAuthorize"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK4.HOOK
             value: "auth_on_subscribe"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK4.ENDPOINT 
-            value: "http://host.docker.internal:8090/device/subAuthorize"
+            value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/subAuthorize"
            
