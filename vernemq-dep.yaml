@@ -40,11 +40,11 @@ spec:
             value: "yes"
           - name: DOCKER_VERNEMQ_ALLOW_ANONYMOUS
             value: "off"
-          - name: DOCKER_VERNEMQ_PLUGINS.VMQ_ACL
+          - name: DOCKER_VERNEMQ_PLUGINS.vmq_acl
             value: "off"
-          - name: DOCKER_VERNEMQ_PLUGINS.VMQ_PASSWD
+          - name: DOCKER_VERNEMQ_PLUGINS.vmq_passwd
             value: "off"
-          - name: DOCKER_VERNEMQ_PLUGINS.VMQ_WEBHOOKS
+          - name: DOCKER_VERNEMQ_PLUGINS.vmq_webhooks
             value: "on"
           - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook1.hook
             value: "on_subscribe"
