@@ -46,20 +46,20 @@ spec:
             value: "off"
           - name: DOCKER_VERNEMQ_PLUGINS.VMQ_WEBHOOKS
             value: "on"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK1.HOOK
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook1.hook
             value: "on_subscribe"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK1.ENDPOINT 
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook1.endpoint 
             value: "http://state-manage.default.svc.cluster.local:8094/subscribeHook"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK2.HOOK
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook2.hook
             value: "auth_on_register"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK2.ENDPOINT 
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook2.endpoint 
             value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/authenticate"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK3.HOOK
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook3.hook
             value: "auth_on_publish"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK3.ENDPOINT 
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook3.endpoint  
             value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/pubAuthorize"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK4.HOOK
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook4.hook
             value: "auth_on_subscribe"
-          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.MYWEBHOOK4.ENDPOINT 
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook4.endpoint  
             value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/subAuthorize"
            
