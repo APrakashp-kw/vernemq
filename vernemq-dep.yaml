@@ -18,7 +18,7 @@ spec:
         app: vernemq-dep
     spec:
       containers:
-      - image: asia-docker.pkg.dev/gcp-iot-core-361019/iot-core-dev/vernemq:812845df083c84695bf98f0ebf4dfdeba8072150
+      - image: asia-docker.pkg.dev/gcp-iot-core-361019/iot-core-dev/vernemq:e9db44eb19cc61ae5426d00558e2859923a88a77
         name: vernemq
         ports:
         - containerPort: 8888
