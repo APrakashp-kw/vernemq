@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.metadata.name }}
+  labels:
+   app: {{ .Values.metadata.app }}
+  namespace: {{ .Values.metadata.namespace }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Values.metadata.app }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.metadata.app }}
+    spec:
+      serviceAccountName: {{ .Values.serviceAccountName }}
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.port.prometheus }}
+          name: {{ .Values.service.name.prometheus }}
+        - containerPort: {{ .Values.service.port.mqtt }}
+          name: {{ .Values.service.name.mqtt }}
+        - containerPort: {{ .Values.service.port.mqttssl }}
+          name: {{ .Values.service.name.mqttssl }}
+        - containerPort: {{ .Values.service.port.empd }}
+          name: {{ .Values.service.name.empd }}
+        - containerPort: {{ .Values.service.port.websockets }}
+          name: {{ .Values.service.name.websockets }}
+        - containerPort: {{ .Values.service.port.erlan1 }}
+          name: {{ .Values.service.name.erlan1 }}
+        - containerPort: {{ .Values.service.port.erlan2 }}
+          name: {{ .Values.service.name.erlan2 }}
+        - containerPort: {{ .Values.service.port.msg }}
+          name: {{ .Values.service.name.msg }}
+        env:
+          - name: DOCKER_VERNEMQ_ACCEPT_EULA
+            value: "yes"
+          - name: DOCKER_VERNEMQ_ALLOW_ANONYMOUS
+            value: "off"
+          - name: DOCKER_VERNEMQ_PLUGINS.vmq_acl
+            value: "off"
+          - name: DOCKER_VERNEMQ_PLUGINS.vmq_passwd
+            value: "off"
+          - name: DOCKER_VERNEMQ_PLUGINS.vmq_webhooks
+            value: "on"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook1.hook
+            value: "on_subscribe"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook1.endpoint 
+            value: "http://state-manage.default.svc.cluster.local:8094/subscribeHook"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook2.hook
+            value: "auth_on_register"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook2.endpoint 
+            value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/authenticate"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook3.hook
+            value: "auth_on_publish"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook3.endpoint  
+            value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/pubAuthorize"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook4.hook
+            value: "auth_on_subscribe"
+          - name: DOCKER_VERNEMQ_VMQ_WEBHOOKS.mywebhook4.endpoint  
+            value: "http://dev-gw-auth.default.svc.cluster.local:8094/device/subAuthorize"

@@ -48,7 +48,19 @@ steps:
 #   env:
 #   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
 #   - 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
-  
+- id: 'Helm Deploy'
+  name: 'asia-docker.pkg.dev/$PROJECT_ID/iot-infra-addons/helm'
+  args: 
+    - upgrade 
+    - -i
+    - vernemq-dep
+    - --set 
+    - image.tag=${REVISION_ID}
+    - ./Helm/vernemq
+  #dir: 'Helm/model-mgmnt'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=iot-core-dev'
 
 #  env:
   #- 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
