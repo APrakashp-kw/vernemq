@@ -56,7 +56,7 @@ steps:
     - vernemq-dep
     - --set 
     - image.tag=${REVISION_ID}
-    - ./Helm/vernemq
+    - ./helm/vernemq
   #dir: 'Helm/model-mgmnt'
   env:
   - 'CLOUDSDK_COMPUTE_ZONE=asia-east1'
